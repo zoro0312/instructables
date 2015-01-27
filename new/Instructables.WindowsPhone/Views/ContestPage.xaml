@@ -1,0 +1,269 @@
+﻿<common:LayoutAwarePage
+    x:Name="contestRootPage"
+    x:Class="Instructables.Views.ContestPage"
+    DataContext="{Binding ContestVM, Source={StaticResource Locator}}"
+    utils:StateHelper.State="{Binding VisualState}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Instructables.Views"
+    xmlns:controls="using:Instructables.Controls"
+    xmlns:data="using:Instructables.DataModel"
+    xmlns:viewModels="using:Instructables.ViewModels"
+    xmlns:selectors="using:Instructables.Selectors"
+    xmlns:common="using:Instructables.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:dataModel="using:Instructables.DataModel"
+    xmlns:converters="using:Instructables.Converters" 
+    xmlns:utils="using:Instructables.Utils"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <common:LayoutAwarePage.Resources>
+
+        <ResourceDictionary>
+            <converters:HtmlToXamlStringConverter x:Key="HtmlToXamlStringConverter"/>
+            <converters:LessThanNumericVisibilityConverter x:Key="LessThanNumericVisibilityConverter"/>
+            <Style x:Key="PivotTextStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="50"/>
+                <Setter Property="FontFamily" Value="Segoe WP"/>
+                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="Margin" Value="5,70,0,5"/>
+            </Style>
+
+            <DataTemplate x:Key="PriceItemTemplate">
+                <Grid Margin="0,0,0,20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="2*" />
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Source="{Binding square3Url}" Stretch="UniformToFill" Width="360" Height="240"/>
+                    <StackPanel Grid.Row="1">
+                        <TextBlock
+                            FontSize="22"
+                            Margin="10,20,10,0" 
+                            FontWeight="Normal" 
+                            Text="{Binding}" FontFamily="Global User Interface"/>
+                        <RichTextBlock
+                            Foreground="Black"
+                            FontFamily="Segoe WP"
+                            FontSize="16"
+                            Margin="10,0,10,0" FontWeight="Normal"
+                            TextTrimming="WordEllipsis" 
+                            IsTextSelectionEnabled="False"
+                            SelectionHighlightColor="Black"
+                            TextWrapping="WrapWholeWords"
+                            IsTextScaleFactorEnabled="False"
+                            utils:RichTextBlockHelper.Text="{Binding description, Converter={StaticResource HtmlToXamlStringConverter}}"/>
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="ContextEntryTemplate">
+                <!--<Border BorderBrush="LightGray" BorderThickness="1" Margin="20,5,20,0">-->
+                <Grid Margin="20,5,20,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <!--<Image Source="{Binding coverImage.mediumUrl}" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="300" MaxWidth="500" Stretch="UniformToFill"/>-->
+                        <Grid Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="500" MaxHeight="280">
+                            <Image Source="{Binding coverImage.mediumUrl}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500" Height="300" Stretch="UniformToFill"/>
+                        </Grid>
+                    <Border Grid.Row="1" Background="Transparent" BorderThickness="1,0,1,1" BorderBrush="#ebebeb">
+                        <Grid Grid.Row="1" VerticalAlignment="Bottom" Background="white">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Style="{StaticResource DefaultText}" Text="{Binding title}" Grid.ColumnSpan="2" FontWeight="SemiBold" FontSize="20" Margin="10,4,10,0" TextLineBounds="TrimToBaseline"/>
+                            <TextBlock Style="{StaticResource DefaultText}" Grid.Row="1" Grid.Column="0" Margin="10,1,0,10" Text="By" Foreground="DimGray" FontWeight="SemiBold" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="Segoe WP"/>
+                            <TextBlock Style="{StaticResource DefaultText}" Grid.Row="1" Grid.Column="1" Margin="0,1,0,10" FontWeight="SemiBold" Text="{Binding author.screenName}" Foreground="DimGray" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="Segoe WP"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </common:LayoutAwarePage.Resources>
+    
+    <Page.BottomAppBar>
+        <CommandBar x:Name="AppButtons" Background="White" Foreground="Black">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="refreshButton" Icon="Sync" Label="refresh" Click="reloadButton_Click"/>
+                <AppBarButton x:Uid="Find" Icon="Find" Label="search" Click="Find_Button_Clicked"/>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+ 
+    <Grid Background="White">
+        <Grid Margin="0" Height="140" VerticalAlignment="Top" Background="#FF262626">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ContentPresenter VerticalAlignment="Top" Margin="20,20,60,0" Grid.Column="0" ContentTemplate="{StaticResource ContestHeaderIcon}" />
+            <TextBlock 
+                       Grid.Column="1" 
+                       Margin="10,27,0,0"
+                       Text="{Binding Contest.title}"
+                       VerticalAlignment="Top"
+                       TextTrimming="CharacterEllipsis" 
+                       Foreground="White" 
+                       FontSize="32"
+                       FontWeight="Normal" FontFamily="Global User Interface"/>
+        </Grid>
+
+        <Pivot x:Uid="Pivot"
+               x:Name="ContestPivot"
+               SelectionChanged="onPivotChanged"
+               CommonNavigationTransitionInfo.IsStaggerElement="True">
+
+            <PivotItem
+                x:Uid="PivotItemInfo"
+                Margin="0,0,0,0">
+                <PivotItem.Header>
+                    <Grid>
+                        <TextBlock Text="info" FontSize="48" FontWeight="Normal" Margin="0,40,0,0" SelectionHighlightColor="White" FontFamily="Global User Interface" IsTextScaleFactorEnabled="False"/>
+                    </Grid>
+                </PivotItem.Header>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <ScrollViewer
+                        Grid.Row="0" 
+                        Margin="0,4,0,0"
+                        Visibility="{Binding Path=ContestVM.IsRefreshing, Source={StaticResource Locator} , Converter={StaticResource ReverseBooleanToVisibilityConverter}}"
+                        HorizontalScrollBarVisibility='Disabled'
+                        HorizontalScrollMode='Disabled'
+                        VerticalScrollBarVisibility='Hidden'
+                        VerticalScrollMode='Enabled'>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="0" Stretch="UniformToFill" Source="{Binding Contest.headerUrl}" />
+                            <RichTextBlock
+                                Grid.Row="1"
+                                x:Name="ContestBodyTextBlock"
+                                Foreground="Black"
+                                FontFamily="Segoe WP"
+                                FontSize="16"
+                                Margin="10,0,10,0" FontWeight="Thin"
+                                TextTrimming="WordEllipsis" 
+                                IsTextSelectionEnabled="False"
+                                IsTextScaleFactorEnabled="False"
+                                TextWrapping="WrapWholeWords"
+                                utils:RichTextBlockHelper.Text="{Binding Contest.body, Converter={StaticResource HtmlToXamlStringConverter}}">
+                            </RichTextBlock>
+                        </Grid>
+                    </ScrollViewer>
+
+                    <Button Grid.Row="1" Background="LightGray"
+                            Margin="20,-5,20,0"
+                            Foreground="Black"
+                            BorderThickness="0"
+                            FontFamily="Segoe WP"
+                            IsTextScaleFactorEnabled="False"
+                            FontSize="20"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Click="Rules_Button_Click"
+                            Content="Offical Rules">
+                    </Button>
+
+
+                </Grid>
+            </PivotItem>
+
+            <PivotItem
+                x:Uid="PivotItemEntries"
+                Margin="0">
+                <PivotItem.Header>
+                    <TextBlock Text="entries" FontSize="48" FontWeight="Normal" Margin="0,40,0,0" SelectionHighlightColor="White" FontFamily="Global User Interface" IsTextScaleFactorEnabled="False"/>
+                </PivotItem.Header>
+                <Grid Visibility="{Binding Path=ContestVM.IsRefreshing, Source={StaticResource Locator} , Converter={StaticResource ReverseBooleanToVisibilityConverter}}">
+                    <TextBlock Visibility="{Binding EntriesCount, Converter={StaticResource LessThanNumericVisibilityConverter},ConverterParameter=0}" Text="Be the first to join this contest!" FontFamily="Segoe WP" FontSize="18" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <ListView
+                        SelectionMode="Single"
+                        Margin="0,20,0,0"
+                        IsItemClickEnabled="True"
+                        ItemTemplate="{StaticResource ContextEntryTemplate}"
+                        ItemsSource="{Binding ContestEntries}"
+                        ItemClick="ContestEntryClicked">
+                    </ListView>
+                </Grid>
+                
+            </PivotItem>
+
+            <PivotItem
+                x:Uid="PivotItemPrice"
+                Margin="0">
+                <PivotItem.Header>
+                    <TextBlock Text="prizes" FontSize="48" FontWeight="Normal" Margin="0,40,0,0" SelectionHighlightColor="White" IsTextScaleFactorEnabled="False" FontFamily="Global User Interface"/>
+                </PivotItem.Header>
+                <ListView
+                        Visibility="{Binding Path=ContestVM.IsRefreshing, Source={StaticResource Locator} , Converter={StaticResource ReverseBooleanToVisibilityConverter}}"
+                        SelectionMode="None"
+                        Margin="0,20,0,0"
+                        IsItemClickEnabled="False"
+                        ItemTemplate="{StaticResource PriceItemTemplate}"
+                        ItemsSource="{Binding Contest.prizes}">
+                </ListView>
+            </PivotItem>
+        </Pivot>
+
+        <Border x:Name="networkErrorBorder" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" BorderBrush="#FFF5AC00" BorderThickness="0,0,0,0" Background="White" Visibility="Collapsed">
+            <Grid x:Name="networkErrorGrid" Background="Orange">
+                <TextBlock x:Name="networkErrorText" Style="{StaticResource DefaultText}" Foreground="White" TextWrapping="Wrap" Text="No Network" VerticalAlignment="Top" Margin="10,0,10,0" FontSize="20" HorizontalAlignment="Left"/>
+            </Grid>
+        </Border>
+
+        <Grid x:Name="ContestOfficalRulePage" Visibility="Collapsed" Background="White">
+            <ScrollViewer 
+                HorizontalScrollBarVisibility='Disabled'
+                HorizontalScrollMode='Disabled'
+                VerticalScrollBarVisibility='Hidden'
+                VerticalScrollMode='Enabled'>
+                <WebView
+                    x:Name="ContestOfficalRules"                    
+                    Margin="10,0,10,0" 
+                    FrameNavigationCompleted="OnNavigated"
+                    NavigationCompleted ="OnNavigated">
+                </WebView>
+                
+            </ScrollViewer>
+        </Grid>
+        <ProgressBar Grid.Row="0" IsIndeterminate="True" Maximum="400" Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Top" Margin="0,5,0,0" />
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="OfflineStates">
+                <VisualState x:Name="Normal"/>
+                <VisualState x:Name="Offline">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="networkErrorBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="networkErrorBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>0,0,0,40</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+    </Grid>
+</common:LayoutAwarePage>

@@ -1,0 +1,250 @@
+﻿<UserControl
+    x:Class="Instructables.Views.SectionView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Instructables.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:utils="using:Instructables.Utils"
+    xmlns:Converters="using:Instructables.Converters" 
+    xmlns:common="using:Instructables.Common"
+    xmlns:selectors="using:Instructables.Selectors" xmlns:controls="using:Instructables.Controls"
+    mc:Ignorable="d"
+    MinWidth="400" MinHeight="540">
+    <d:DataContext>
+        <Binding Path="DetailVM.SelectedInstructable.steps[1]" Source="{StaticResource Locator}"/>
+    </d:DataContext>
+    <UserControl.Resources>
+        <selectors:PhotoContentSelector x:Name="PhotoContentSelector"/>
+        <Converters:StepHeaderFormatterConverter x:Key="StepHeaderFormatterConverter"/>
+        <Converters:BooleanToVisibilityConverter x:Name="BooleanToVisibilityConverter"/>
+        <Converters:GreaterThanNumericVisibilityConverter x:Name="GreatThanNumericVisibilityConverter"/>
+        <Style x:Key="ImageButton" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource ButtonBackgroundThemeBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource ButtonForegroundThemeBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderThemeBrush}"/>
+            <Setter Property="BorderThickness" Value="{StaticResource ButtonBorderThemeThickness}"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="PointerOver"/>
+                                    <VisualState x:Name="Pressed"/>
+                                    <VisualState x:Name="Disabled"/>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Focused"/>
+                                    <VisualState x:Name="Unfocused"/>
+                                    <VisualState x:Name="PointerFocused"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}">
+                                <ContentPresenter x:Name="ContentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--These are here only for design time testing, the real copies are in App.Xaml so the ContentSelector can find them-->
+        <DataTemplate x:Name="PhotoTemplate1">
+            <Grid VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="470"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="470"/>
+                </Grid.ColumnDefinitions>
+                <Button Style="{StaticResource ImageButton}">
+                    <!--<Image Source="{Binding files[0].square3Url}" Stretch="UniformToFill"/>-->
+                    <controls:AnnotatedImage ImageSource="{Binding files[0].square3Url}" AnnotationCollection="{Binding imageNotes}" Background="Black" />
+                </Button>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Name="PhotoTemplate2">
+            <Grid VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="230"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="230"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="320"/>
+                </Grid.ColumnDefinitions>
+                <Button Style="{StaticResource ImageButton}">
+                    <Image Source="{Binding files[0].mediumUrl}" Stretch="UniformToFill"/>
+                </Button>
+                <Button Grid.Row="2" Style="{StaticResource ImageButton}">
+                    <Image Source="{Binding files[1].mediumUrl}" Stretch="UniformToFill"/>
+                </Button>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Name="PhotoTemplate3">
+            <Grid VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="230"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="230"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="320"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="320"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.RowSpan="3" Style="{StaticResource ImageButton}">
+                    <Image Source="{Binding files[0].square3Url}" Stretch="UniformToFill" />
+                </Button>
+                <Button Grid.Column="2" Style="{StaticResource ImageButton}">
+                    <Image Source="{Binding files[1].mediumUrl}" Stretch="UniformToFill"/>
+                </Button>
+                <Button Grid.Column="2" Grid.Row="2" Style="{StaticResource ImageButton}">
+                    <Image Source="{Binding files[2].mediumUrl}" Stretch="UniformToFill"/>
+                </Button>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Name="PhotoTemplate4">
+            <Grid VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="230"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="230"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="320"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="320"/>
+                </Grid.ColumnDefinitions>
+                <Button Style="{StaticResource ImageButton}">
+                    <Image Source="{Binding files[0].mediumUrl}" Stretch="UniformToFill" />
+                </Button>
+                <Button Grid.Column="2" Style="{StaticResource ImageButton}">
+                    <Image Source="{Binding files[1].mediumUrl}" Stretch="UniformToFill"/>
+                </Button>
+                <Button Grid.Row="2" Style="{StaticResource ImageButton}">
+                    <Image Source="{Binding files[2].mediumUrl}" Stretch="UniformToFill"/>
+                </Button>
+                <Button Grid.Row="2" Grid.Column="2" Style="{StaticResource ImageButton}">
+                    <Image Source="{Binding files[3].mediumUrl}" Stretch="UniformToFill"/>
+                </Button>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Name="PhotoTemplate5">
+            <Grid VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="150"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.ColumnSpan="3" Grid.RowSpan="3" Style="{StaticResource ImageButton}">
+                    <Image Source="{Binding files[0].square3Url}" Stretch="UniformToFill"/>
+                </Button>
+                <Button Grid.Column="4" Style="{StaticResource ImageButton}">
+                    <Image Source="{Binding files[1].square3Url}" Stretch="UniformToFill"/>
+                </Button>
+                <Button Grid.Row="2" Grid.Column="4" Style="{StaticResource ImageButton}">
+                    <Image Source="{Binding files[2].square3Url}" Stretch="UniformToFill"/>
+                </Button>
+                <Button Grid.Row="4" Style="{StaticResource ImageButton}">
+                    <Image Source="{Binding files[3].square3Url}" Stretch="UniformToFill"/>
+                </Button>
+                <Button Grid.Row="4" Grid.Column="2" Style="{StaticResource ImageButton}">
+                    <Image Source="{Binding files[4].square3Url}" Stretch="UniformToFill"/>
+                </Button>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Name="PhotoTemplate6plus">
+            <Grid VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="150"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.ColumnSpan="3" Grid.RowSpan="3" Style="{StaticResource ImageButton}">
+                    <Image Source="{Binding files[0].square3Url}" Stretch="UniformToFill"/>
+                </Button>
+                <Button Grid.Column="4" Style="{StaticResource ImageButton}">
+                    <Image Source="{Binding files[1].square3Url}" Stretch="UniformToFill"/>
+                </Button>
+                <Button Grid.Row="2" Grid.Column="4" Style="{StaticResource ImageButton}">
+                    <Image Source="{Binding files[2].square3Url}" Stretch="UniformToFill"/>
+                </Button>
+                <Button Grid.Row="4" Style="{StaticResource ImageButton}">
+                    <Image Source="{Binding files[3].square3Url}" Stretch="UniformToFill"/>
+                </Button>
+                <Button Grid.Row="4" Grid.Column="2" Style="{StaticResource ImageButton}">
+                    <Image Source="{Binding files[4].square3Url}" Stretch="UniformToFill"/>
+                </Button>
+                <Button Grid.Row="4" Grid.Column="4" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right" Background="#FFF15322" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <TextBlock Text="More" FontSize="20" Margin="0,0,10,5"></TextBlock>
+                </Button>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid x:Name="ContentGrid" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <ContentControl x:Name="photoContent" Content="{Binding}" ContentTemplateSelector="{StaticResource PhotoContentSelector}" HorizontalAlignment="Left" VerticalAlignment="Top" >
+        </ContentControl>
+        <common:RichTextColumns x:Name="TextColumns" VerticalAlignment="Top" Grid.Column="1" Margin="0,0,0,0">
+            <common:RichTextColumns.ColumnTemplate>
+                <DataTemplate>
+                    <RichTextBlockOverflow MaxWidth="400" Height="470" Tapped="UriTapped" Margin="50,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    </RichTextBlockOverflow>
+                </DataTemplate>
+            </common:RichTextColumns.ColumnTemplate>
+            <RichTextBlock x:Name="ContentTextBlock" IsTextSelectionEnabled="False" FontSize="20" MinWidth="80" Tapped="UriTapped" MaxWidth="400" Height="470"  HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Black">
+                <!--Don't remove this, it's here to make sure the Xaml serializer picks up the AttachedUri property and creates a XAML Type Provider for it later.-->
+                <Paragraph>
+                    <Run Text="" utils:AttachedUri.UriSource=" " />
+                </Paragraph>
+            </RichTextBlock>
+        </common:RichTextColumns>
+        <Grid x:Name="DownloadsGrid" Visibility="{Binding HasDownloads, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Column="2" Margin="40,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Download Files:" Style="{StaticResource GroupHeaderTextStyle}" Foreground="Black" Margin="0,0,20,20" VerticalAlignment="Top" />
+            <!--<controls:ScrollableListView Grid.Row="1" ItemsSource="{Binding DownloadFiles}">
+                <ListView.Resources>
+                    <DataTemplate x:Key="DataTemplate1">
+                        <HyperlinkButton Content="{Binding name}" NavigateUri="{Binding downloadUrl}" FontSize="16" ></HyperlinkButton>
+                    </DataTemplate>
+                </ListView.Resources>
+                <ListView.ItemTemplate>
+                    <StaticResource ResourceKey="DataTemplate1"/>
+                </ListView.ItemTemplate>
+
+            </controls:ScrollableListView>-->
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,59 @@
+﻿<common:LayoutAwarePage
+    x:Class="Instructables.Views.AboutPage"
+    xmlns:common="using:Instructables.Common"
+    xmlns:Converters="using:Instructables.Converters" 
+    xmlns:viewModels="using:Instructables.ViewModels" xmlns:selectors="using:Instructables.Selectors"
+    xmlns:utils="using:Instructables.Utils"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Instructables.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <common:LayoutAwarePage.DataContext>
+        <Binding Path="AboutVM" Source="{StaticResource Locator}"/>
+    </common:LayoutAwarePage.DataContext>
+    <common:LayoutAwarePage.Resources>
+        <Converters:HtmlToXamlStringConverter x:Key="HtmlToXamlStringConverter"/>
+    </common:LayoutAwarePage.Resources>
+ 
+    <Grid Background="White">
+        <ScrollViewer Margin="0,0,0,20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <!--<Grid Grid.Row="0" Margin="20,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Stretch="Uniform" Width="{Binding fitWidth}" Height="{Binding fitHeight}" >
+                        <Image.Source>
+                            <BitmapImage UriSource="ms-appx:///Assets/About_Logo.png" />
+                        </Image.Source>
+                    </Image>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="Version" FontFamily="Segoe WP" IsTextScaleFactorEnabled="False" Foreground="Black" SelectionHighlightColor="Black" FontSize="36" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                        <TextBlock Grid.Row="1" Text="1.0.0" FontFamily="Segoe WP" IsTextScaleFactorEnabled="False" Foreground="Black" SelectionHighlightColor="Black" FontSize="36" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    </Grid>
+                </Grid>-->
+                <StackPanel Background="#2B2B2B" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <TextBlock Text="Instructables" FontFamily="Segeo WP"
+                           FontSize="20" Grid.Row="0" VerticalAlignment="Center" 
+                           Padding="0, 10, 0, 10"
+                           FontWeight="SemiBold"
+                           IsTextScaleFactorEnabled ="False"
+                           TextAlignment="Center"/>
+                </StackPanel>
+                
+                <RichTextBlock Grid.Row="1" utils:RichTextBlockHelper.Text="{Binding AboutText, Converter={StaticResource HtmlToXamlStringConverter}}" Foreground="Black" FontFamily="Sogoe WP" FontSize="16" IsTextSelectionEnabled="False" IsTextScaleFactorEnabled="False" Margin="20,10" />
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</common:LayoutAwarePage>

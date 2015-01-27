@@ -1,0 +1,27 @@
+﻿<UserControl
+    x:Class="Instructables.Controls.CategorySelector"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Instructables.Controls"
+    d:DataContext="{Binding ExploreVM, Source={StaticResource Locator}}"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="using:Callisto.Controls"
+    mc:Ignorable="d" d:DesignWidth="220">
+    <UserControl.Resources>
+        <DataTemplate x:Key="CategoryItemTemplate">
+            <Grid>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding CategoryName}" VerticalAlignment="Top" FontSize="26.667" FontFamily="Segoe UI Semibold" Margin="0,0,40,0"/>
+            </Grid>
+        </DataTemplate>
+        <Style x:Key="CategoryListBoxItemStyle" TargetType="ListBoxItem">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="TabNavigation" Value="Local"/>
+            <Setter Property="Padding" Value="24,5,4,5"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid HorizontalAlignment="Left" Margin="0,0,0,0">
+        <ListBox Width="220" MaxHeight="440" ItemsSource="{Binding Categories}" ItemTemplate="{StaticResource CategoryItemTemplate}" SelectedItem="{Binding SelectedCategory, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0,10" ItemContainerStyle="{StaticResource CategoryListBoxItemStyle}" Background="#FFF4F5F6">
+        </ListBox>
+    </Grid>
+</UserControl>

@@ -1,0 +1,246 @@
+﻿<common:LayoutAwarePage
+    x:Name="exporeRootPage"
+    x:Class="Instructables.Views.ExplorePage"
+    DataContext="{Binding ExploreVM, Source={StaticResource Locator}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Instructables.Views"
+    xmlns:controls="using:Instructables.Controls"
+    xmlns:data="using:Instructables.DataModel"
+    xmlns:viewModels="using:Instructables.ViewModels"
+    xmlns:selectors="using:Instructables.Selectors"
+    xmlns:common="using:Instructables.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:dataModel="using:Instructables.DataModel"
+    xmlns:converters="using:Instructables.Converters" 
+    xmlns:utils="using:Instructables.Utils"
+    mc:Ignorable="d" utils:StateHelper.State="{Binding VisualState}">
+
+    <common:LayoutAwarePage.Resources>
+
+        <ResourceDictionary>
+            <converters:LessThanNumericVisibilityConverter x:Name="LessThanNumericVisibilityConverter"/>
+
+            <CollectionViewSource
+    		x:Name="groupedItemsViewSource"
+    		IsSourceGrouped="true"
+    		Source="{Binding CurrentGroup.GroupItems}" ItemsPath="GroupItems"
+    		d:Source="{Binding CurrentGroup.GroupItems, Source={d:DesignInstance IsDesignTimeCreatable=True, Type=viewModels:ExploreViewModel}}"/>
+            
+            <DataTemplate x:Key="ChannelItemTemplate">
+                <Grid>
+                    <Grid.ChildrenTransitions>
+                        <TransitionCollection>
+                            <EntranceThemeTransition/>
+                        </TransitionCollection>
+                    </Grid.ChildrenTransitions>
+                    <TextBlock Style="{StaticResource DefaultText}" HorizontalAlignment="Left" Text="{Binding display}" VerticalAlignment="Top" FontSize="26.667" FontWeight="Normal" Margin="0,0,40,0" TextTrimming="WordEllipsis"/>
+                </Grid>
+            </DataTemplate>
+            
+            <DataTemplate x:Key="CategoryItemTemplate">
+                <Grid>
+                    <Grid.ChildrenTransitions>
+                        <TransitionCollection>
+                            <EntranceThemeTransition/>
+                        </TransitionCollection>
+                    </Grid.ChildrenTransitions>
+                    <TextBlock Style="{StaticResource DefaultText}" HorizontalAlignment="Left" Text="{Binding CategoryName}" VerticalAlignment="Top" FontSize="26" FontWeight="Normal" Margin="0,0,40,0" />
+                </Grid>
+            </DataTemplate>
+            
+            <Style x:Key="ChannelListBoxItemStyle" TargetType="ListBoxItem">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="TabNavigation" Value="Local"/>
+                <Setter Property="Padding" Value="24,5,4,5"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            </Style>
+
+            <DataTemplate x:Key="ExploreItemTemplate">
+                <Grid Margin="0,0,0,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="2*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  MaxHeight="280" MaxWidth="500">
+                        <Rectangle Width="500" Height="300" Fill="LightGray"/>
+                        <Image Source="{Binding mediumUrl}" Width="500" Height="300" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill"/>
+                        <Canvas Visibility="{Binding isCollection, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.0,0.0">
+                            <Polygon Fill="#fdc20f" Points="0,0 0,110 110,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            <Path Fill="#FFFFFF" Data="M33.337,16.784h15.75c-1.047-1.64-2.878-2.73-4.968-2.73H33.337V16.784z"/>
+                            <Path Fill="#FFFFFF" Data="M49.99,19.454H33.337v11.11h16.678V19.951C50.015,19.784,50.004,19.618,49.99,19.454z"/>
+                            <Path Fill="#FFFFFF" Data="M33.337,33.234v11.11H50c0.005-0.098,0.015-0.192,0.015-0.292V33.234H33.337z"/>
+                            <Path Fill="#FFFFFF" Data="M30.665,41.587H13.985v2.466c0,3.257,2.639,5.894,5.896,5.894h10.783V41.587z"/>
+                            <Path Fill="#FFFFFF" Data="M33.337,47.014v2.933h10.782c2.176,0,4.071-1.18,5.092-2.933H33.337z"/>
+                            <Path Fill="#FFFFFF" Data="M30.665,22.382v-8.329H19.881c-3.257,0-5.896,2.643-5.896,5.898v2.431H30.665z"/>
+                            <Rectangle Canvas.Left="14" Canvas.Top="25" Width="17" Height="14" Name="rect3098" Fill="#FFFFFFFF"/>
+                            <Canvas.RenderTransform>
+                                <CompositeTransform ScaleX="0.6" ScaleY="0.6"/>
+                            </Canvas.RenderTransform>
+                        </Canvas>
+                        <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,30" Height="40" Background="#CCFFFFFF">
+                            <TextBlock Visibility="{Binding sponsoredFlag, Converter={StaticResource BooleanToVisibilityConverter}}" Text="Sponsored" IsTextSelectionEnabled="False" FontFamily="Segoe WP" Margin="20,5,20,0" HorizontalAlignment="Right" FontSize="18" Foreground="Black"/>
+                        </Grid>
+                    </Grid>
+                    <Border Grid.Row="1" Background="Transparent" BorderThickness="1,0,1,1" BorderBrush="#ebebeb">
+                        <Grid Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="white">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Style="{StaticResource DefaultText}" Text="{Binding title}" Grid.ColumnSpan="2" Margin="10,4,10,0" FontSize="20" FontFamily="Segoe WP" FontWeight="SemiBold" />
+                            <TextBlock Style="{StaticResource DefaultText}" Grid.Row="1" Grid.Column="0" Margin="10,1,0,10" Text="By" Foreground="DimGray" FontWeight="SemiBold" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                            <TextBlock Style="{StaticResource DefaultText}" Grid.Row="1" Grid.Column="1" Margin="0,1,10,10" Text="{Binding author}" Foreground="DimGray" FontWeight="SemiBold" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
+                        </Grid>
+                    </Border>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </common:LayoutAwarePage.Resources>
+
+    <Grid Background="White">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="OfflineStates">
+                <VisualState x:Name="Normal"/>
+                <VisualState x:Name="Offline">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="networkErrorBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="networkErrorBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>0,0,0,40</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <StackPanel x:Name="pivotHead" Orientation="Horizontal" VerticalAlignment="Top" Height="140" Background="{Binding CurrentGroup.BackgroundColor}">
+            <ContentPresenter Margin="20,20,60,0" VerticalAlignment="Top" ContentTemplate="{Binding CurrentGroup.GroupIcon}"/>
+            <TextBlock Text="{Binding CurrentGroup.ChannelDisplayName}" FontSize="32" FontWeight="Normal" Margin="0,27,0,0" Foreground="White" FontFamily="Global User Interface" IsTextScaleFactorEnabled="False"/>
+        </StackPanel>
+        <ProgressBar Grid.Row="0" x:Name="LoadingPanel" IsIndeterminate="True" Maximum="400" VerticalAlignment="Top" Margin="0,5,0,0" />
+        <Pivot x:Uid="Pivot"
+               x:Name="pivot"
+               Loaded="ExploreItemsLoad"
+               CommonNavigationTransitionInfo.IsStaggerElement="True">
+
+            <Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <TextBlock Text="{Binding Group.GroupName}" FontSize="48" FontWeight="Normal" Margin="0,40,0,0" FontFamily="Global User Interface" IsTextScaleFactorEnabled="False"/>
+                    </Grid>
+                </DataTemplate>
+            </Pivot.HeaderTemplate>
+            
+            <Pivot.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <ListView
+                        SelectionMode="Single"
+                        IsItemClickEnabled="True"
+                        VerticalAlignment="Top"
+                        Visibility="{Binding Path=ExploreVM.IsRefreshing, Source={StaticResource Locator} , Converter={StaticResource ReverseBooleanToVisibilityConverter}}"
+                        ItemTemplate="{StaticResource ExploreItemTemplate}"
+                        ItemsSource="{Binding Group.GroupSummaries}"
+                        ItemClick="InstructableItemClicked">
+                        </ListView>
+                        <!--<Grid Visibility="{Binding Group.GroupSummaries.Count, Converter={StaticResource LessThanNumericVisibilityConverter}, ConverterParameter=0}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="150"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="3*"/>
+                            </Grid.RowDefinitions>
+                            <Canvas Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-120,0,0,0">
+                                <Path Fill="#BCBEC0" Data="M57.492,19.241c-1.814,0-1.971,0-2.154,0l-0.578-3.162
+                c-0.068-0.724-0.275-1.843-0.619-3.721c-1.293-7.078-5.797-8.135-8.363-8.135c-0.689,0-1.426,0.07-2.186,0.209L6.876,11.107
+                c-2.201,0.4-4.116,1.631-5.387,3.465c-1.272,1.836-1.753,4.056-1.351,6.25L5.3,49.056c0.727,3.972,4.189,6.854,8.229,6.854
+                c0.353,0,0.708-0.051,1.063-0.096c0.816,2.301,2.99,3.962,5.579,3.962H58.01c3.277,0,5.93-2.651,5.93-5.919V29.158
+                c0,0,0.061,3.362,0.061-2.667C64,21.388,61.676,19.241,57.492,19.241z M10.101,48.182L4.942,19.947
+                c-0.168-0.916,0.033-1.84,0.561-2.604c0.534-0.764,1.328-1.278,2.248-1.444l36.718-6.674c0.461-0.085,0.896-0.131,1.309-0.131
+                c0.979,0,2.803,0,3.564,4.137c0.229,1.267,0.377,2.099,0.469,2.627l-0.051,0.009l0.615,3.375H20.171
+                c-3.279,0-5.936,2.65-5.936,5.918v25.81l-0.073,0.015C12.233,51.343,10.445,50.044,10.101,48.182z"/>
+                                <Canvas.RenderTransform>
+                                    <ScaleTransform ScaleX="2" ScaleY="2"/>
+                                </Canvas.RenderTransform>
+                            </Canvas>
+                            <TextBlock Grid.Row="2" Text="No Instructables Found." FontSize="20" FontFamily="Segoe WP" Foreground="#BCBEC0" HorizontalAlignment="Center"/>
+                        </Grid>-->
+                    </Grid>
+                </DataTemplate>
+            </Pivot.ItemTemplate>
+        </Pivot>
+
+        <Grid x:Name="ChannelMenu" Visibility="Collapsed" Background="#FFF4F5F6">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Foreground="Black"  Text="Choose a channel" VerticalAlignment="Center" FontSize="32" FontFamily="Segoe UI" FontWeight="Normal" Margin="10,10,10,10"/>
+            <ListBox 
+                Grid.Row="1"
+                BorderThickness="0"
+                ItemsSource="{Binding CurrentGroup.CurrentGroupChannels}"
+                ItemTemplate="{StaticResource ChannelItemTemplate}"
+                SelectedIndex="{Binding SelectedChannelIndex, Mode=TwoWay}"
+                SelectionChanged="onChannelChanged"
+                ItemContainerStyle="{StaticResource ChannelListBoxItemStyle}">
+            </ListBox>
+        </Grid>
+
+        <Grid x:Name="CollectionCategoryMenu" Visibility="Collapsed" Background="#FFF4F5F6">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Style="{StaticResource DefaultText}" Grid.Row="0" Text="Choose a category" VerticalAlignment="Center" FontSize="32" FontWeight="Normal" Margin="10,10,10,10"/>
+            <ListBox
+                x:Name="CollectionCategoryMenuList"
+                Grid.Row="1"
+                BorderThickness="0"
+                ItemsSource="{Binding CollectionCategoryList}"
+                ItemTemplate="{StaticResource CategoryItemTemplate}"
+                SelectedIndex="{Binding SelectedCollectionCategoryIndex, Mode=TwoWay}"
+                SelectionChanged="onCategoryChanged"
+                ItemContainerStyle="{StaticResource ChannelListBoxItemStyle}">
+            </ListBox>
+        </Grid>
+        <ProgressBar Grid.Row="0" IsIndeterminate="True" Maximum="400" Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Top" Margin="0,5,0,0" />
+        <Border x:Name="networkErrorBorder" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" BorderBrush="#FFF5AC00" BorderThickness="0,0,0,0" Background="White" Visibility="Collapsed">
+            <Grid x:Name="networkErrorGrid" Background="Orange">
+                <TextBlock x:Name="networkErrorText" Style="{StaticResource DefaultText}" Foreground="White" TextWrapping="Wrap" Text="No Network" VerticalAlignment="Top" Margin="10,0,10,0" FontSize="20" HorizontalAlignment="Left"/>
+            </Grid>
+        </Border>
+
+    </Grid>
+    <Page.BottomAppBar>
+        <CommandBar Background="White" Foreground="Black">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Uid="Refresh" Icon="Sync" Label="refresh" Click="Refresh_Clicked"/>
+                <AppBarButton x:Name="ChannelButton" x:Uid="Channel" Label="channel" Click="Channel_Clicked">
+                    <AppBarButton.Icon>
+                        <PathIcon Width="42" Height="42" Data="M23.641,17.364h-5.255V12h5.255V17.364z M23.641,18.303h-5.255v5.364h5.255V18.303z M17.255,12H12v5.364
+	h5.255V12z M23.641,24.636h-5.255V30h5.255V24.636z M30,12h-5.255v5.364H30V12z M30,18.303h-5.255v5.364H30V18.303z M30,24.636
+	h-5.255V30H30V24.636z M17.255,24.636H12V30h5.255V24.636z M17.255,18.303H12v5.364h5.255V18.303z">
+                        </PathIcon>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Uid="Find" Icon="Find" Label="search" Click="Find_Clicked"/>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+</common:LayoutAwarePage>

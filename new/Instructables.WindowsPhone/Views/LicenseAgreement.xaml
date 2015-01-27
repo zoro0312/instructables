@@ -1,0 +1,31 @@
+﻿<common:LayoutAwarePage
+    x:Class="Instructables.Views.LicenseAgreement"
+    xmlns:common="using:Instructables.Common"
+    xmlns:Converters="using:Instructables.Converters" 
+    xmlns:viewModels="using:Instructables.ViewModels" xmlns:selectors="using:Instructables.Selectors"
+    xmlns:utils="using:Instructables.Utils"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Instructables.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <common:LayoutAwarePage.DataContext>
+        <Binding Path="LicenseVM" Source="{StaticResource Locator}"/>
+    </common:LayoutAwarePage.DataContext>
+    <common:LayoutAwarePage.Resources>
+        <Converters:HtmlToXamlStringConverter x:Key="HtmlToXamlStringConverter"/>
+    </common:LayoutAwarePage.Resources>
+    <Grid>
+        <ScrollViewer Margin="0,0,0,80">
+            <Grid>
+                <TextBlock FontFamily="Segoe WP" FontSize="30" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,30,0,0" Text="Software Agreement:" Foreground="White" SelectionHighlightColor="White" IsTextScaleFactorEnabled="False"/>
+                <RichTextBlock utils:RichTextBlockHelper.Text="{Binding LincenseText, Converter={StaticResource HtmlToXamlStringConverter}}" Foreground="White" FontFamily="Sogoe WP" FontSize="22" IsTextSelectionEnabled="False" IsTextScaleFactorEnabled="False" Margin="20,90,20,80"/>
+            </Grid>
+        </ScrollViewer>
+        <Button Content="I Decline" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,0,0,20" Click="OnDeclinePress" BorderThickness="1.5" Width="{Binding ButtonWidth}" IsTextScaleFactorEnabled="False"/>
+        <Button Content="I Accept" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20" Click="OnAgreePress" BorderThickness="1.5" Width="{Binding ButtonWidth}" IsTextScaleFactorEnabled="False"/>
+    </Grid> 
+    
+</common:LayoutAwarePage>

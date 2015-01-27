@@ -1,0 +1,203 @@
+﻿<UserControl
+    x:Class="Instructables.Controls.ExploreLiveTile"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Instructables.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:Instructables.Converters" 
+    mc:Ignorable="d"
+    d:DesignHeight="150"
+    d:DesignWidth="150">
+
+    <UserControl.Resources>
+        <converters:ExploreLiveTileImageConverter x:Key="ExploreLiveTileImageConverter"/>
+        <converters:PercentConverter x:Key="PercentConverter"/>
+        
+        <Storyboard x:Key="liveTileAnimUp" x:Name="liveTileAnimUp" Completed="liveTileAnimUp_Completed">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:05" Storyboard.TargetName="panel" Storyboard.TargetProperty="Y">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.100" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=1}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.150" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.99}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.200" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.95}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.900" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.60}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.950" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.56}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.000" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.55}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:03.100" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.55}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:03.150" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.54}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:03.200" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.50}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:03.900" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.05}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:03.950" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.01}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:04.000" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.00}"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:05" Storyboard.TargetName="panel2" Storyboard.TargetProperty="Y">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.100" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.7}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.150" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.69}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.200" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.65}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.900" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.30}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.950" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.26}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.000" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.25}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:03.100" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.25}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:03.150" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.24}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:03.200" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.20}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:03.900" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=-0.25}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:03.950" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=-0.29}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:04.000" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=-0.30}"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimation Duration="0:0:0" BeginTime="00:00:03.7"                                 
+                                Storyboard.TargetName="grid3"             
+                                Storyboard.TargetProperty="Opacity"            
+                                From="1" To="0" />
+        </Storyboard>
+        
+        <Storyboard x:Key="liveTileAnimDown" x:Name="liveTileAnimDown" Completed="liveTileAnimDown_Completed">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:01" Storyboard.TargetName="panel" Storyboard.TargetProperty="Y">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.100" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.00}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.150" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.01}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.200" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.05}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.900" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.50}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.950" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.54}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.000" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.55}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:03.100" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.55}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:03.150"
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.56}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:03.200" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.60}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:03.900" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.95}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:03.950" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.99}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:04.000" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=1.00}"/>
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:01" Storyboard.TargetName="panel2" Storyboard.TargetProperty="Y">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.100" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=-0.30}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.150" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=-0.29}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.200" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=-0.25}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.900" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.20}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.950" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.24}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.000" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.25}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:03.100" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.25}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:03.150"
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.26}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:03.200" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.30}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:03.900" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.65}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:03.950" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.69}"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:04.000" 
+                                      Value="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.70}"/>
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimation Duration="0:0:0" BeginTime="00:00:01.3"                                 
+                                Storyboard.TargetName="grid3"             
+                                Storyboard.TargetProperty="Opacity"            
+                                From="0" To="1" />
+        </Storyboard>
+
+        <Storyboard x:Key="liveTileAnimFlip" x:Name="liveTileAnimFlip" Completed="liveTileAnimFlip_Completed">
+            <DoubleAnimation
+                From="0" To="90" 
+                BeginTime="0:0:0"
+                Duration="0:0:0.2"
+                Storyboard.TargetName="planePanel1"
+                Storyboard.TargetProperty="(PlaneProjection.RotationX)"
+                />
+            <DoubleAnimation
+                From="90" To="180" 
+                BeginTime="0:0:0.2"
+                Duration="0:0:0.2"
+                Storyboard.TargetName="planePanel2"
+                Storyboard.TargetProperty="(PlaneProjection.RotationX)"
+                />
+        </Storyboard>
+
+        <Storyboard x:Key="liveTileAnimFlipBack" x:Name="liveTileAnimFlipBack" Completed="liveTileAnimFlipBack_Completed">
+            <DoubleAnimation
+                From="180" To="90" 
+                BeginTime="0:0:0"
+                Duration="0:0:0.2"
+                Storyboard.TargetName="planePanel2"
+                Storyboard.TargetProperty="(PlaneProjection.RotationX)"
+                />
+            <DoubleAnimation
+                From="90" To="0" 
+                BeginTime="0:0:0.2"
+                Duration="0:0:0.2"
+                Storyboard.TargetName="planePanel1"
+                Storyboard.TargetProperty="(PlaneProjection.RotationX)"
+                />
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid Margin="0,0,8,8" Canvas.ZIndex="{Binding GroupZIndex}" Opacity="1" Width="{Binding fitSize}" Height="{Binding fitSize}">
+        <Grid Name="grid1" Background="{Binding GroupBrush}">
+            <Grid.Projection>
+                <PlaneProjection x:Name="planePanel1" RotationX="0"/>
+            </Grid.Projection>
+            <ContentPresenter ContentTemplate="{Binding GroupName, Converter={StaticResource ExploreLiveTileImageConverter}}">
+                <ContentPresenter.RenderTransform>
+                    <TranslateTransform x:Name="panel" 
+                                        Y="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=1}"/>
+                </ContentPresenter.RenderTransform>
+            </ContentPresenter>
+        </Grid>
+
+        <Grid Name="grid2">
+            <Grid.Background>
+                <ImageBrush ImageSource="{Binding GroupBackground}" Stretch="Fill"/>
+            </Grid.Background>
+            <Grid.Projection>
+                <PlaneProjection x:Name="planePanel2" RotationX="90" />
+            </Grid.Projection>
+        </Grid>
+        <Grid Name="grid3">
+            <Grid.RenderTransform>
+                <TranslateTransform x:Name="panel2" 
+                                    Y="{Binding fitSize, Converter={StaticResource PercentConverter}, ConverterParameter=0.7}"/>
+            </Grid.RenderTransform>
+            <TextBlock Text="{Binding GroupName}"
+                FontFamily="Segoe WP" FontWeight="SemiBold"
+                FontSize="20" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
+        </Grid>
+    </Grid>
+</UserControl>

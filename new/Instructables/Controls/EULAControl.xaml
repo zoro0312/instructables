@@ -1,0 +1,40 @@
+﻿<UserControl
+    x:Class="Instructables.Controls.EULAControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Instructables.Controls"
+    xmlns:viewModels="using:Instructables.ViewModels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="768"
+    d:DesignWidth="1024"
+    RequestedTheme="Dark"
+    xmlns:utils="using:Instructables.Utils">
+
+    <Grid Background="#CC9C9494">
+        <Grid.DataContext>
+            <Binding Path="LicenseVM" Source="{StaticResource Locator}"/>
+        </Grid.DataContext>
+        <Grid Background="DimGray" Width="650" Height="380" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="10*"/>
+
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       Text="Software Agreement" FontFamily="Segoe UI" FontWeight="SemiBold" FontSize="22"/>
+            <!--<RichEditBox Grid.Row="1" Margin="10, 0, 10, 0"
+                     x:Name="EULAText" ScrollViewer.VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>-->
+            <Grid Background="White" Grid.Row="1">
+                <RichTextBlock utils:RichTextBlockHelper.Text="{Binding LincenseText, Converter={StaticResource HtmlToXamlStringConverter}}" Foreground="Black" FontFamily="Sogoe UI" FontSize="16" IsTextSelectionEnabled="False" Margin="40,30,40,40"/>
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                    <Button Content="I Decline" Click="OnEULACancelButtonClicked" Width="150" Margin="0,0,25,10"/>
+                    <Button Content="I Accept" Click="OnEULAAcceptButtonClicked" Width="150" Margin="0,0,0,10"/>
+                </StackPanel>
+            </Grid>
+            
+        </Grid>
+    </Grid>
+</UserControl>

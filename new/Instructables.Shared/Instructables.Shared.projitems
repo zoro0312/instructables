@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>ffa03407-4110-4cf6-9c0d-226b01768ba6</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Instructables</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Common\AnimatedImage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\BindableBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ContinuationManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\GoogleAnalyticsTracker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\LayoutAwarePage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\RichTextColumns.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\SessionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\IsLastStepToMarginConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\Author.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\Category.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\Channel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\Comment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\Contest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\CoveredImage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\DataGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\File.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\GroupedItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\HeroPageDataSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\Instructable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\InstructableCategoryList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\InstructableContestList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\InstructableList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\InstructableGuideItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\InstructableSearchSummaryCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\InstructableSummary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\InstructableSummaryCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\InstructableType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\Introduction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\License.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\RequestMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\RequestResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\MediaItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\SampleDataSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\SessionInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\SignUpError.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\SortOption.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\Step.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\StepGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\TestData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\TutorialDataSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\UploadResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\UserProfile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\Video.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\VotableContest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataServices\CompressedHttpClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataServices\InstructablesDataService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataServices\SerializationHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\DateToStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\DebugConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\EmptyStringVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ExploreLiveTileImageConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\GreaterThanNumericVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\GroupHeaderContentConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\HtmlToXamlStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\InsCountFormatterConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\LessThanNumericVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\MillionToStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ReverseBooleanToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\StepHeaderFormatterConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\AttachedUri.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\DesignMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\HtmlToXamlConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\InputPaneHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\RelayCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\RichTextBlockHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\StateHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\VideoParser.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)VectorGraphics\ExploreHeaders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)VectorGraphics\ExploreLiveTiles.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)VectorGraphics\LandingHeaders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>

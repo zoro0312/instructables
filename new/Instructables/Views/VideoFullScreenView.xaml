@@ -1,0 +1,139 @@
+﻿<UserControl
+    x:Class="Instructables.Views.VideoFullScreenView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Instructables.Views"
+    DataContext="{Binding DetailVM, Source={StaticResource Locator}}"
+    xmlns:common="using:Instructables.Common"
+    xmlns:Converters="using:Instructables.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Instructables.Controls" xmlns:selectors="using:Instructables.Selectors"
+    xmlns:controls2="using:Instructables.Controls"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="GifImageStyle" TargetType="common:GifImage">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="common:GifImage">
+                        <Image x:Name="DisplayFrame"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="BackButtonStyle" TargetType="Button">
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="Width" Value="48"/>
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Margin" Value="36,0,36,36"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FontSize" Value="56"/>
+            <Setter Property="AutomationProperties.AutomationId" Value="BackButton"/>
+            <Setter Property="AutomationProperties.Name" Value="Back"/>
+            <Setter Property="AutomationProperties.ItemType" Value="Navigation Button"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="RootGrid">
+                            <Grid Margin="-1,-16,0,0">
+                                <TextBlock x:Name="BackgroundGlyph" Text="&#xE0A8;" Foreground="{StaticResource BackButtonBackgroundThemeBrush}"/>
+                                <TextBlock x:Name="NormalGlyph" Text="{StaticResource BackButtonGlyph}" Foreground="White"/>
+                                <TextBlock x:Name="ArrowGlyph" Text="&#xE0A6;" Opacity="0"/>
+                            </Grid>
+                            <Rectangle
+                            x:Name="FocusVisualWhite"
+                            IsHitTestVisible="False"
+                            Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}"
+                            StrokeEndLineCap="Square"
+                            StrokeDashArray="1,1"
+                            Opacity="0"
+                            StrokeDashOffset="1.5"/>
+                            <Rectangle
+                            x:Name="FocusVisualBlack"
+                            IsHitTestVisible="False"
+                            Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}"
+                            StrokeEndLineCap="Square"
+                            StrokeDashArray="1,1"
+                            Opacity="0"
+                            StrokeDashOffset="0.5"/>
+
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To="0.5" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FocusVisualWhite" d:IsOptimized="True"/>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke)" Storyboard.TargetName="FocusVisualWhite">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource BackButtonPointerOverBackgroundThemeBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill)" Storyboard.TargetName="FocusVisualWhite">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource BackButtonDisabledForegroundThemeBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundGlyph" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource BackButtonForegroundThemeBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <DoubleAnimation
+                                            Storyboard.TargetName="ArrowGlyph"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="1"
+                                            Duration="0"/>
+                                            <DoubleAnimation
+                                            Storyboard.TargetName="NormalGlyph"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="0"
+                                            Duration="0"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Focused">
+                                        <Storyboard>
+                                            <DoubleAnimation
+                                            Storyboard.TargetName="FocusVisualWhite"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="1"
+                                            Duration="0"/>
+                                            <DoubleAnimation
+                                            Storyboard.TargetName="FocusVisualBlack"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="1"
+                                            Duration="0"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unfocused" />
+                                    <VisualState x:Name="PointerFocused" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <selectors:MediaPlayerTemplateSelector x:Key="MediaPlayerTemplateSelector"/>
+        <Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <Converters:ReverseBooleanToVisibilityConverter x:Key="ReverseBooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+    <Grid x:Name="Root"  Background="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <WebView x:Name="webView" NavigationCompleted="NavigationCompleted" Source="{Binding SelectedVideo}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></WebView>
+        <Button HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Command="{Binding DismissVideoViewerCommand}"
+            Content="Back" Tapped="BackButtonTapped"
+            Style="{StaticResource BackButtonStyle}" Margin="36,36,36,36" />
+
+        <!--WebView x:Name="webView" NavigationCompleted="NavigationCompleted" Visibility="Collapsed"/-->
+    </Grid>
+</UserControl>

@@ -1,0 +1,482 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{364AF628-2600-42E3-9FDA-5E565E08E288}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Instructables</RootNamespace>
+    <AssemblyName>Instructables.WindowsPhone</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformVersion>8.1</TargetPlatformVersion>
+    <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{76F1466A-8B6D-4E39-A767-685A06062A39};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SynthesizeLinkMetadata>true</SynthesizeLinkMetadata>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
+    <AppxBundle>Auto</AppxBundle>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Controls\AnnotatedImage.cs" />
+    <Compile Include="Controls\CategorySelector.xaml.cs">
+      <DependentUpon>CategorySelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ChannelSelector.xaml.cs">
+      <DependentUpon>ChannelSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ExploreLiveTile.xaml.cs">
+      <DependentUpon>ExploreLiveTile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ScrollableGridView.cs" />
+    <Compile Include="Controls\ScrollableListView.cs" />
+    <Compile Include="Controls\SortSelector.xaml.cs">
+      <DependentUpon>SortSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TypeSelector.xaml.cs">
+      <DependentUpon>TypeSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\FilenameToBitmapImageConverter.cs" />
+    <Compile Include="Converters\PercentConverter.cs" />
+    <Compile Include="Converters\ScreenNameIsFavoritedConverter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Selectors\FavoriteItemTemplateSelector.cs" />
+    <Compile Include="Selectors\HomeGridItemTemplateSelector.cs" />
+    <Compile Include="Selectors\MainGridItemTemplateSelector.cs" />
+    <Compile Include="Selectors\MediaPlayerTemplateSelector.cs" />
+    <Compile Include="Selectors\PhotoContentSelector.cs" />
+    <Compile Include="ViewModels\AboutViewModel.cs" />
+    <Compile Include="ViewModels\ContestViewModel.cs" />
+    <Compile Include="Selectors\ProfileItemTemplateSelector.cs" />
+    <Compile Include="ViewModels\CreateViewModel.cs" />
+    <Compile Include="ViewModels\ExploreViewModel.cs" />
+    <Compile Include="ViewModels\LandingViewModel.cs" />
+    <Compile Include="ViewModels\InstructableDetailViewModel.cs" />
+    <Compile Include="ViewModels\LicenseAgreementViewModel.cs" />
+    <Compile Include="ViewModels\UserProfileViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommentsPage.xaml.cs">
+      <DependentUpon>CommentsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ContestPage.xaml.cs">
+      <DependentUpon>ContestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateInstructable.xaml.cs">
+      <DependentUpon>CreateInstructable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditInstructable.xaml.cs">
+      <DependentUpon>EditInstructable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateTutorial.xaml.cs">
+      <DependentUpon>CreateTutorial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExplorePage.xaml.cs">
+      <DependentUpon>ExplorePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DraftsListPage.xaml.cs">
+      <DependentUpon>DraftsListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditProfilePage.xaml.cs">
+      <DependentUpon>EditProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ForgetPassword.xaml.cs">
+      <DependentUpon>ForgetPassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GuideDetail.xaml.cs">
+      <DependentUpon>GuideDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LandingPage.xaml.cs">
+      <DependentUpon>LandingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InstructableDetail.xaml.cs">
+      <DependentUpon>InstructableDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LicenseAgreement.xaml.cs">
+      <DependentUpon>LicenseAgreement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginHome.xaml.cs">
+      <DependentUpon>LoginHome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PhotoFlipView.xaml.cs">
+      <DependentUpon>PhotoFlipView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PhotoSequenceCapture.xaml.cs">
+      <DependentUpon>PhotoSequenceCapture.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PortraitSectionView.xaml.cs">
+      <DependentUpon>PortraitSectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PublishedListPage.xaml.cs">
+      <DependentUpon>PublishedListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ResetPassword.xaml.cs">
+      <DependentUpon>ResetPassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchResultsPage.xaml.cs">
+      <DependentUpon>SearchResultsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SectionView.xaml.cs">
+      <DependentUpon>SectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SignUpPage.xaml.cs">
+      <DependentUpon>SignUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserProfilePage.xaml.cs">
+      <DependentUpon>UserProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VideoDetail.xaml.cs">
+      <DependentUpon>VideoDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VideoFullScreenView.xaml.cs">
+      <DependentUpon>VideoFullScreenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VotingContests.xaml.cs">
+      <DependentUpon>VotingContests.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WalkThroughs.xaml.cs">
+      <DependentUpon>WalkThroughs.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="analytics.xml" />
+    <Content Include="Assets\AboutText.txt" />
+    <Content Include="Assets\About_logo.png" />
+    <Content Include="Assets\LiveTile\GroupAll.jpg" />
+    <Content Include="Assets\LiveTile\GroupCollection.jpg" />
+    <Content Include="Assets\LiveTile\GroupFood.jpg" />
+    <Content Include="Assets\LiveTile\GroupLiving.jpg" />
+    <Content Include="Assets\LiveTile\GroupOutside.jpg" />
+    <Content Include="Assets\LiveTile\GroupPlay.jpg" />
+    <Content Include="Assets\LiveTile\GroupTech.jpg" />
+    <Content Include="Assets\LiveTile\GroupWorkshop.jpg" />
+    <Content Include="Assets\Delete.png" />
+    <Content Include="Assets\empty_cover.png" />
+    <Content Include="Assets\FocusBracket.png" />
+    <Content Include="Assets\HeaderLogos\icon_profile.png" />
+    <Content Include="Assets\LicenseAgreement.txt" />
+    <Content Include="Assets\LiveTile\TileAll.png" />
+    <Content Include="Assets\LiveTile\TileCollection.png" />
+    <Content Include="Assets\LiveTile\TileFood.png" />
+    <Content Include="Assets\LiveTile\TileLiving.png" />
+    <Content Include="Assets\LiveTile\TileOutside.png" />
+    <Content Include="Assets\LiveTile\TilePlay.png" />
+    <Content Include="Assets\LiveTile\TileTech.png" />
+    <Content Include="Assets\LiveTile\TileWorkshop.png" />
+    <Content Include="Assets\Logo.scale-100.png" />
+    <Content Include="Assets\Logo.scale-140.png" />
+    <Content Include="Assets\Logo.scale-240.png" />
+    <Content Include="Assets\MenuImages\alltypes-white.png" />
+    <Content Include="Assets\MenuImages\alltypes.png" />
+    <Content Include="Assets\MenuImages\ebook-white.png" />
+    <Content Include="Assets\MenuImages\ebook.png" />
+    <Content Include="Assets\MenuImages\guide-white.png" />
+    <Content Include="Assets\MenuImages\guide.png" />
+    <Content Include="Assets\MenuImages\photos-white.png" />
+    <Content Include="Assets\MenuImages\photos.png" />
+    <Content Include="Assets\MenuImages\stepbystep-white.png" />
+    <Content Include="Assets\MenuImages\stepbystep.png" />
+    <Content Include="Assets\MenuImages\video-white.png" />
+    <Content Include="Assets\MenuImages\video.png" />
+    <Content Include="Assets\PhoneSplashscreen.scale-100.png" />
+    <Content Include="Assets\PhoneSplashscreen.scale-140.png" />
+    <Content Include="Assets\PhoneSplashscreen.scale-240.png" />
+    <Content Include="Assets\Photos.png" />
+    <Content Include="Assets\ProfileBackground1.jpg" />
+    <Content Include="Assets\ProfileBackground2.jpg" />
+    <Content Include="Assets\ProfileBackground3.jpg" />
+    <Content Include="Assets\Screen_1.jpg" />
+    <Content Include="Assets\Screen_2.jpg" />
+    <Content Include="Assets\Screen_3.jpg" />
+    <Content Include="Assets\Screen_4.jpg" />
+    <Content Include="Assets\Screen_5.jpg" />
+    <Content Include="Assets\Screen_6.jpg" />
+    <Content Include="Assets\SmallLogo.scale-100.png" />
+    <Content Include="Assets\SmallLogo.scale-140.png" />
+    <Content Include="Assets\SmallLogo.scale-240.png" />
+    <Content Include="Assets\Square71x71Logo.scale-100.png" />
+    <Content Include="Assets\Square71x71Logo.scale-140.png" />
+    <Content Include="Assets\Square71x71Logo.scale-240.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-140.png" />
+    <Content Include="Assets\StoreLogo.scale-240.png" />
+    <Content Include="Assets\walkthrough_1.png" />
+    <Content Include="Assets\walkthrough_2.png" />
+    <Content Include="Assets\walkthrough_3.png" />
+    <Content Include="Assets\walkthrough_4.png" />
+    <Content Include="Assets\walkthrough_5.png" />
+    <Content Include="Assets\walkthrough_6.png" />
+    <Content Include="Assets\Wide744x360Logo.scale-100.png" />
+    <Content Include="Assets\Wide744x360Logo.scale-140.png" />
+    <Content Include="Assets\Wide744x360Logo.scale-240.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\CategorySelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ChannelSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ExploreLiveTile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SortSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\TypeSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="StandardStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AboutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CommentsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ContestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreateInstructable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditInstructable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreateTutorial.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DraftsListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ExplorePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ForgetPassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GuideDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LandingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HeaderContent\HeaderContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Views\InstructableDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LicenseAgreement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginHome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PhotoFlipView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PhotoSequenceCapture.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PortraitSectionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PublishedListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ResetPassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SearchResultsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SectionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SignUpPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VideoDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VideoFullScreenView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VotingContests.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WalkThroughs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Callisto">
+      <HintPath>..\packages\Callisto.1.2.9\lib\winrt45\Callisto.dll</HintPath>
+    </Reference>
+    <Reference Include="GoogleAnalytics">
+      <HintPath>..\packages\GoogleAnalyticsSDK.1.2.12\lib\wpa81\GoogleAnalytics.winmd</HintPath>
+    </Reference>
+    <Reference Include="GoogleAnalytics.Core">
+      <HintPath>..\packages\GoogleAnalyticsSDK.1.2.12\lib\wpa81\GoogleAnalytics.Core.winmd</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\winrt45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\Complete in Him.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="analytics.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
+    <VisualStudioVersion>12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetPlatformIdentifier)' == '' ">
+    <TargetPlatformIdentifier>WindowsPhoneApp</TargetPlatformIdentifier>
+  </PropertyGroup>
+  <Import Project="..\Instructables.Shared\Instructables.Shared.projitems" Label="Shared" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

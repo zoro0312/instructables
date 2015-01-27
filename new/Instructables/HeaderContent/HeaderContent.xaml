@@ -1,0 +1,53 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="TextBlock" x:Key="HeaderTextStyle">
+        <Setter Property="FontSize" Value="36"/>
+        <Setter Property="Margin" Value="0,0,0,-20"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontFamily" Value="ms-appx:///Assets/Fonts/Complete in Him.ttf#Complete in Him"/>
+        <Setter Property="VerticalAlignment" Value="Top"></Setter>
+    </Style>
+    <DataTemplate x:Key="RecentButtonContent">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <!--Canvas  Height="30" Margin="0,-5,0,10">
+                <Path Data="F1M21.604,16.728C22.524,16.728 23.268,15.98 23.268,15.06 23.268,14.14 22.524,13.398 21.604,13.398L16.722,13.398 16.722,7.304C16.722,6.384 15.977,5.636 15.057,5.636 14.141,5.636 13.393,6.384 13.393,7.304L13.393,15.06C13.393,15.98,14.141,16.728,15.057,16.728z M15.057,3.33C21.526,3.33 26.79,8.595 26.79,15.066 26.79,21.531 21.526,26.792 15.057,26.792 8.592,26.792 3.331,21.531 3.331,15.066 3.331,8.595 8.592,3.33 15.057,3.33 M15.057,30.12C23.362,30.12 30.12,23.368 30.12,15.066 30.12,6.758 23.362,0 15.057,0 6.755,0 0,6.758 0,15.066 0,23.368 6.755,30.12 15.057,30.12" Fill="#FFF16522" Height="30.12" Canvas.Left="0" Canvas.Top="9.44" Width="30.12" RenderTransformOrigin="0.5,0.5">
+                </Path>
+            </Canvas-->
+            <TextBlock Text="Recent >" Style="{StaticResource HeaderTextStyle}"/>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="FeaturedButtonContent">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <!--Canvas  Height="30" Margin="0,-5,0,10">
+                <Path Data="F1M8.875,0L0,27.318 23.238,10.436 12.32,10.436z" Fill="#FFFAAC18" Height="27.318" Canvas.Left="7.104" Canvas.Top="9.44" Width="23.238"/>
+                <Path Data="F1M14.361,0L23.238,27.318 0,10.436 10.916,10.436z" Fill="#FFFAAC18" Height="27.318" Canvas.Left="1.618" Canvas.Top="9.44" Width="23.238"/>
+            </Canvas-->
+            <TextBlock Text="Featured >" Style="{StaticResource HeaderTextStyle}"/>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="PopularButtonContent">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <!--Canvas  Height="30" Margin="0,-5,0,10">
+                <Path Data="F1M28.341,1.897C25.286,-1.434 19.013,-0.011 15.382,5.146 10.789,-0.396 5.301,-1.434 2.245,1.897 -6.27,11.168 11.949,24.496 15.257,25.993L15.257,26.035C15.266,26.033 15.282,26.02 15.288,26.018 15.288,26.018 15.32,26.033 15.333,26.035L15.333,25.993C18.635,24.496,36.853,11.168,28.341,1.897" Fill="#FFC01988" Height="26.035" Canvas.Left="0.799" Canvas.Top="13.03" Width="30.584"/>
+            </Canvas-->
+            <TextBlock Text="Popular >" Style="{StaticResource HeaderTextStyle}"/>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="FollowedButtonContent">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <!--Canvas  Height="30" Margin="0,-5,0,10">
+                <Path Data="F1M28.341,1.897C25.286,-1.434 19.013,-0.011 15.382,5.146 10.789,-0.396 5.301,-1.434 2.245,1.897 -6.27,11.168 11.949,24.496 15.257,25.993L15.257,26.035C15.266,26.033 15.282,26.02 15.288,26.018 15.288,26.018 15.32,26.033 15.333,26.035L15.333,25.993C18.635,24.496,36.853,11.168,28.341,1.897" Fill="#FFC01988" Height="26.035" Canvas.Left="0.799" Canvas.Top="13.03" Width="30.584"/>
+            </Canvas-->
+            <TextBlock Text="Following >" Style="{StaticResource HeaderTextStyle}"/>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="ContestButtonContent">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <!--Canvas  Height="30" Margin="0,-5,0,10">
+                <Path Data="F1M28.341,1.897C25.286,-1.434 19.013,-0.011 15.382,5.146 10.789,-0.396 5.301,-1.434 2.245,1.897 -6.27,11.168 11.949,24.496 15.257,25.993L15.257,26.035C15.266,26.033 15.282,26.02 15.288,26.018 15.288,26.018 15.32,26.033 15.333,26.035L15.333,25.993C18.635,24.496,36.853,11.168,28.341,1.897" Fill="#FFC01988" Height="26.035" Canvas.Left="0.799" Canvas.Top="13.03" Width="30.584"/>
+            </Canvas-->
+            <TextBlock Text="Contests >" Style="{StaticResource HeaderTextStyle}"/>
+        </StackPanel>
+    </DataTemplate>
+</ResourceDictionary>

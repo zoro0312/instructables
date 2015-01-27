@@ -1,0 +1,62 @@
+Version: 1.0.1<br><br>
+<b>Autodesk® Instructables</b> <br><br>
+
+
+<b>© 2015 Autodesk, Inc.  All rights reserved. </b><br><br> 
+
+<b>PLEASE SEE DATA COLLECTION NOTICE AT END OF THIS ABOUT SECTION.</b> <br><br>
+
+All use of this Software is subject to the terms and conditions of the Autodesk license agreement accepted upon installation of this Software and/or packaged with the Software.<br><br>
+
+<b>Trademarks</b><br><br>
+Autodesk is registered trademarks or trademarks of Autodesk, Inc., and/or its subsidiaries and/or affiliates.<br><br>
+
+All other brand names, product names or trademarks belong to their respective holders.<br><br>
+
+<b>Third-Party Software Credits and Attributions</b><br>
+-----------------------------------------<br>
+<b>Html Agility Pack 1.4.6</b><br>
+<a href="http://htmlagilitypack.codeplex.com/">http://htmlagilitypack.codeplex.com/</a><br><br>
+
+<b>Callisto 1.2.9</b><br>
+Copyright (c) 2012,2013 Tim Heuer<br>
+<a href="https://github.com/timheuer/callisto">https://github.com/timheuer/callisto</a><br><br>
+
+<b>GoogleAnalyticsSDK 1.2.12</b><br>
+<a href="https://googleanalyticssdk.codeplex.com/">https://googleanalyticssdk.codeplex.com/</a><br> <br>
+
+Microsoft Public License (MS-PL)<br><br>
+
+This license governs use of the accompanying software. If you use the software, you accept this license. If you do not accept the license, do not use the software. <br><br>
+
+1. Definitions <br>
+The terms "reproduce," "reproduction," "derivative works," and "distribution" have the same meaning here as under U.S. copyright law.<br>
+A "contribution" is the original software, or any additions or changes to the software. <br>
+A "contributor" is any person that distributes its contribution under this license. <br>
+"Licensed patents" are a contributor's patent claims that read directly on its contribution. <br><br>
+
+2. Grant of Rights <br>
+(A) Copyright Grant- Subject to the terms of this license, including the license conditions and limitations in section 3, each contributor grants you a non-exclusive, worldwide, royalty-free copyright license to reproduce its contribution, prepare derivative works of its contribution, and distribute its contribution or any derivative works that you create. <br>
+(B) Patent Grant- Subject to the terms of this license, including the license conditions and limitations in section 3, each contributor grants you a non-exclusive, worldwide, royalty-free license under its licensed patents to make, have made, use, sell, offer for sale, import, and/or otherwise dispose of its contribution in the software or derivative works of the contribution in the software. <br><br>
+
+3. Conditions and Limitations <br>
+(A) No Trademark License - This license does not grant you rights to use any contributors' name, logo, or trademarks. <br>
+(B) If you bring a patent claim against any contributor over patents that you claim are infringed by the software, your patent license from such contributor to the software ends automatically. <br>
+(C) If you distribute any portion of the software, you must retain all copyright, patent, trademark, and attribution notices that are present in the software. <br>
+(D) If you distribute any portion of the software in source code form, you may do so only under this license by including a complete copy of this license with your distribution. If you distribute any portion of the software in compiled or object code form, you may only do so under a license that complies with this license. <br>
+(E) The software is licensed "as-is." You bear the risk of using it. The contributors give no express warranties, guarantees or conditions. You may have additional consumer rights under your local laws which this license cannot change. To the extent permitted under your local laws, the contributors exclude the implied warranties of merchantability, fitness for a particular purpose and non-infringement.<br><br><br>
+
+
+-----------------------------------------<br><br>
+
+<b>DATA COLLECTION NOTICE</b><br><br>
+
+Autodesk respects your privacy.  For details, please see our Privacy Statement located at <a href="http://www.autodesk.com/privacy">www.autodesk.com/privacy</a> and specific Privacy Notices and Data Collection Notices in our applications.<br><br>
+ 
+In order to support ongoing product improvement efforts, Autodesk receives aggregated product usage information about this application.  This information consists of: product launch and closure which allows us to calculate length and number of application sessions; whether a connection was successful or failed; general geographic location (to city level); general application commands and operations used (e.g., which functions are used more often);  as well as general mobile device information such as OS version and device type.  <br><br>
+ 
+We use the Google Analytics SDK, which collects information and then presents the data to us in aggregated form.  The Google Analytics software agent collects the following data: agent version, platform, SDK version, platform timestamp, API key (identifier for application), application version, device identifier, Model (non-iOS), manufacture (non-iOS) and OS version of device (non-iOS), session start/stop time, events, errors and page views (for example, clicking on buttons or links, and whether or not it worked, all of which is reported to us in aggregate), locale (specific location where a given language is spoken), time zone, and network status (WiFi, etc.). The device identifiers (if applicable), IMEI (if applicable), MAC address (if applicable), and platform are hashed to a Google ID.  Note that Google will see Internet Protocol (IP) address through the HTTP request to send information.  For clarity, Autodesk does not receive geo-location data (i.e. GPS coordinates).<br><br>
+ 
+If you would like to opt-out so that data is not sent to Google and then aggregated for Autodesk, please take the following steps depending on what type of device you are using.  iOS device: Go to the in-app settings and switch the in-application toggle to “off” to prevent data being sent to Google.  Alternatively, if the app does not have in-app settings, go to device settings and switch the in-application toggle to “off” to prevent data being sent to Google.   Android device:  Go to the in-app menu settings and uncheck the “approve data collection” box.  Note that changing the toggle to “off” (iOS) or unchecking the box (Android) mid-session will prevent data being sent to Google as of the next use session.  You can review Google’s privacy policy at <a href="http://www.google.com/policies/privacy/">www.google.com/policies/privacy/</a>.
+
+ 
